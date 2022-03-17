@@ -15,6 +15,15 @@
   display: none;
 }
 
+.el-box-card {
+  margin: 15px;
+  box-shadow: none;
+  border: 0;
+
+  .el-card__header {
+    border-color: #f8f8f8;
+  }
+}
 
 // to fixed https://github.com/ElemeFE/element/issues/2461
 .el-dialog {
@@ -46,4 +55,472 @@
 // to fix el-date-picker css style
 .el-range-separator {
   box-sizing: content-box;
+}
+
+// dropdown
+.el-dropdown-menu {
+  a {
+    display: block
+  }
+}
+
+// fix date-picker ui bug in filter-item
+.el-range-editor.el-input__inner {
+  display: inline-flex !important;
+}
+
+button.success{
+  color: #67c23a;
+
+  &:focus, &:hover {
+    color: #85ce61;
+  }
+}
+
+button.primary{
+  color: #409eff;
+
+  &:focus, &:hover {
+    color: #66b1ff;
+  }
+}
+
+button.info{
+  color:#909399;
+
+  &:focus, &:hover {
+    color: #a6a9ad;
+  }
+}
+
+button.warning{
+  color:#e6a23c;
+
+  &:focus, &:hover {
+    color: #ebb563;
+  }
+}
+
+button.danger{
+  color:#f56c6c;
+
+  &:focus, &:hover {
+    color: #f78989;
+  }
+}
+
+.el-table th.gutter{
+  display: table-cell !important;
+}
+
+.el-form-item {
+  border: 0 !important;
+}
+
+.el-box-card {
+  margin: 15px;
+  box-shadow: none;
+  border: 0;
+
+  .el-card__header {
+    border-color: #f8f8f8;
+  }
+}
+
+.el-form-item__label {
+  font-size: 13px;
+  // font-weight: normal;
+  // color: #000
+}
+
+.upload_media.upload_media_type__text{
+  display: block;
+  .upload_media_item {
+    margin: 0 0 8px;
+    min-width: 150px;
+    max-width: 100%;
+    width: fit-content !important;
+    .media_text {line-height: 1;}
+  }
+}
+
+input.el-input__inner {
+  border: 1px solid #999;
+}
+.el-textarea__inner {
+  border: 1px solid #999;
+
+}
+
+div.el-input__inner {
+  border: 1px solid #999;
+}
+span.el-checkbox__inner{
+  border: 1px solid #999;
+}
+
+
+span.el-radio__inner{
+  border: 1px solid #999;
+}
+// 错误提示
+.el-notification{
+  z-index: 3000 !important;
+}
+// 按钮
+.el-button{
+  &.el-button--small,
+  &.el-button--medium {
+    padding: 0 15px;
+  }
+  padding: 0 15px;
+  height: 30px;
+  &.no-pad{
+    padding: 0;
+  }
+  &.dis-loading{
+    border-color: rgba(0, 0, 0, .2) !important;
+    background: rgba(0, 0, 0, .2) !important;
+    color: #fff !important;
+    pointer-events: none;
+  }
+}
+// 表单项
+.qzui-filter-layout{
+  .el-form-item{
+    .el-select,
+    .el-date-editor,
+    .el-input,
+    .ant-calendar-picker{
+      width: 200px !important;
+      .el-range-input{
+        width: 69%;
+      }
+    }
+    .el-date-editor{
+      padding-right: 3px;
+    }
+  }
+}
+.el-form {
+  &.qzui-form-layout,
+  &.diy-form{
+    width: 100% !important;
+    &.mini-label{
+      .el-form-item{
+        .el-form-item__label{
+          width: 80px !important;
+        }
+        .el-form-item__content{
+          width: calc(100% - 80px);
+        }
+      }
+    }
+    &.small-label{
+      .el-form-item{
+        .el-form-item__label{
+          width: 100px !important;
+        }
+        .el-form-item__content{
+          width: calc(100% - 100px);
+        }
+      }
+    }
+    &.middle-label{
+      .el-form-item{
+        .el-form-item__label{
+          width: 120px !important;
+        }
+        .el-form-item__content{
+          width: calc(100% - 120px);
+        }
+      }
+    }
+    .el-form-item{
+      width: calc(50% - 5px) !important;
+      margin-right: 0;
+      display: inline-flex !important;
+      &:nth-child(odd){
+        margin-right: 10px;
+      }
+      &.row{
+        width:100% !important;
+      }
+      &.no-label{
+        .el-form-item__content{
+          width: 100%;
+        }
+      }
+      .el-form-item__label{
+        width: 150px !important;
+        float: none;
+      }
+      .el-form-item__content{
+        width: calc(100% - 150px);
+        margin-left: 0 !important;
+        word-break: break-all;
+        .el-input,
+        .el-textarea,
+        .el-select,
+        .el-date-editor,
+        .el-cascader,
+        .ant-calendar-picker {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+  &.only-show{
+    .el-form-item:not(.not-bg){
+      .el-form-item__content{
+        box-sizing: border-box;
+        background: #eee;
+        border-style: solid;
+        border-color: #e5e6e7;
+        border-width: 0 1px;
+        border-radius: 4px;
+        padding: 0 6px;
+      }
+    }
+  }
+  .el-form-item{
+    &.is-error{
+      .mce-tinymce,
+      .ant-calendar-picker-input,
+      .upload_media_item{
+        border-color: #f44336 !important;
+      }
+    }
+  }
+}
+
+.el-form-item{
+  .el-form-item__label,
+  .el-form-item__content{
+    line-height: 30px;
+  }
+}
+.el-input__suffix .el-input__icon{
+  line-height: 30px;
+}
+.el-input__icon{
+  line-height: 24px;
+}
+.el-input__inner{
+  height: 30px !important;
+  line-height: 30px !important;
+}
+.el-input-number{
+  &>span{
+    height: 28px;
+  }
+}
+.el-cascader__dropdown{
+  p{
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}
+// 表格
+/* 合计行上移样式开始 */ 
+// .qzui-data-table.add-total .el-table,
+// .el-table.add-total {
+//   .el-table__body-wrapper,
+//     .el-table__fixed-body-wrapper{
+//       padding-bottom: 30px;
+//     }
+//     .el-table__footer-wrapper,
+//     .el-table__fixed-footer-wrapper{
+//       position: absolute;
+//       bottom: 0.6rem;
+//     }
+// }
+// .qzui-data-table.add-total.not-more .el-table,
+// .el-table.add-total.not-more {
+//   .el-table__footer-wrapper,
+//   .el-table__fixed-footer-wrapper{
+//     bottom: 0;
+//   }
+// }
+/* 合计行上移样式结束 */ 
+.el-table{
+  .el-table__header-wrapper,
+  .el-table__fixed-header-wrapper{
+    th{
+      background: #eff1f7;;
+    }
+    th,td{
+      padding: 6px 0;
+    }
+  }
+  .el-table__body-wrapper,
+  .el-table__fixed-body-wrapper{
+    td{
+      padding: 0;
+      .tab-link {
+        text-decoration: underline;
+        cursor: pointer;
+        color: blue;
+      }
+    }
+    .cell{
+      .el-button.el-button--text{
+        padding: 0;
+      }
+    }
+    .el-form-item{
+      width: 100% !important;
+      margin-right: 0 !important;
+      .el-form-item__content{
+        width: 100%;
+      }
+    }
+  }
+  .el-table__footer-wrapper,
+  .el-table__fixed-footer-wrapper{
+    td{
+      padding: 0;
+      height: 30px;
+      line-height: 30px;
+      border-width: 0 1px 0 0;
+    }
+  }
+  // 修复弹窗出现压在上面的线
+  .el-table__fixed, 
+  .el-table__fixed-left,
+  .el-table__fixed-right{
+    &:before{
+      z-index: 1;
+    }
+  }
+
+  .is-center.el-table-column--selection .cell {
+    padding: 0;
+    display: inline;
+  }
+  // 上传附件
+  .upload_media.upload_media_type__text {
+    margin: 10px;
+    .upload_media_item {
+      margin: 0 auto 8px;
+    }
+  }
+  // 图片列表
+  .diy-image{
+    margin-top: 10px;
+  }
+}
+// 弹窗
+.el-dialog__wrapper{
+  background: rgba(0, 0, 0, .5);
+  .el-dialog{
+    margin-top: 10vh !important;
+    overflow: hidden;
+    max-height: 80vh;
+    .el-dialog__header{
+      height: 50px;
+      line-height: 49px;
+      padding: 0 20px;
+      border-bottom: 1px solid rgba(0, 0, 0, .2);
+      .el-dialog__headerbtn{
+        top: 0;
+      }
+    }
+    .el-dialog__body{
+      max-height: calc(80vh - 100px);
+      overflow: auto;
+      .body-content{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        &>div{
+          max-height: calc(80vh - 160px); 
+          overflow-y: auto; 
+          box-sizing: border-box; 
+          &:first-child{
+            width: 74%;
+            padding-right: 20px;
+          }
+          &:last-child{
+            border: 1px solid rgba(0, 0, 0, 0.4);
+            width: 25%;
+            padding-left: 10px;
+            padding-right: 5px;
+            padding-bottom: 10px;
+            line-height: 35px;
+            // 选择区域
+            .select-item {
+              border: 1px dashed #bdb5b5;
+              border-radius: 4px;
+              justify-content: space-between;
+              display: flex;
+              align-items: center;
+              box-sizing: border-box;
+              padding: 4px;
+              background: #e9f5fe;
+              margin-bottom: 5px;
+              &:last-child{
+                margin-bottom: 0;
+              }
+              .select-item-name {
+                flex: 1;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              }
+            }
+          }
+        }
+      }
+    }
+    .el-dialog__footer{
+      height: 50px;
+      padding: 10px 20px;
+      .footerEdit{
+        padding:0;
+      }
+      // .pop-footer{}
+    }
+  }
+}
+.template_list,
+.el-card {
+  .el-card__header{
+    padding: 10px 20px;
+  }
+  .el-card__body{
+    padding: 10px;
+
+  }
+  .qzui-data-table{
+    margin-top: 0px !important;
+    .el-pagination{
+      margin: 10px 0;
+    }
+  }
+}
+.el-table .caret-wrapper{
+  height: 23px;
+  vertical-align: top;
+  .sort-caret{
+    &.ascending{
+      top: 0;
+    }
+    &.descending{
+      bottom: 0;
+    }
+  }
+}
+
+.el-tooltip__popper {
+  max-width: 500px;
+}
+.el-select-dropdown{
+  max-width: 50vw;
+}
+.el-table--border{
+  border: none;
+}
+.el-button.is-round{
+padding: 0 12px;
 }

@@ -7,20 +7,39 @@
         <navbar />
       </div>
       <app-main />
+
+      
     </div>
+     <!-- <div :class="{ hasTagsView: needTagsView }" class="main-container">
+      <div :class="{ 'fixed-header': fixedHeader }">
+        <navbar />
+        <tags-view v-if="needTagsView" />
+      </div>
+
+      <section class="app-main">
+        <transition name="fade-transform" mode="out-in">
+          <AppMain />
+        </transition>
+      </section>
+
+      <right-panel >
+        <settings />
+      </right-panel>
+    </div> -->
   </div>
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain } from './components'
+import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
   name: 'Layout',
   components: {
+    AppMain,
     Navbar,
     Sidebar,
-    AppMain
+    TagsView,
   },
   mixins: [ResizeMixin],
   computed: {
@@ -29,6 +48,9 @@ export default {
     },
     device() {
       return this.$store.state.app.device
+    },
+    needTagsView() {
+      return this.$store.state.settings.tagsView
     },
     fixedHeader() {
       return this.$store.state.settings.fixedHeader

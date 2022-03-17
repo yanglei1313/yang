@@ -12,9 +12,15 @@ import App from './App'
 import store from './store'
 import router from './router'
 
+
+import '@/components/index'
+
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import qzui, { fetchMoldValues } from 'qzui'
+import 'qzui/lib/qzui.css'
+Vue.use(qzui)
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api

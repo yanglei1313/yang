@@ -1,7 +1,6 @@
 <template>
   <div class="app-container">
     <el-table
-      v-loading="listLoading"
       :data="list"
       element-loading-text="Loading"
       border
@@ -77,3 +76,4 @@ export default {
   }
 }
 </script>
+

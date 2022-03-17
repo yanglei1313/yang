@@ -1,11 +1,12 @@
 import defaultSettings from '@/settings'
-
-const { showSettings, fixedHeader, sidebarLogo } = defaultSettings
+import db from '@/utils/localstorage'
+const { showSettings, fixedHeader, sidebarLogo,tagsView } = defaultSettings
 
 const state = {
   showSettings: showSettings,
   fixedHeader: fixedHeader,
-  sidebarLogo: sidebarLogo
+  sidebarLogo: sidebarLogo,
+  tagsView
 }
 
 const mutations = {
@@ -14,7 +15,7 @@ const mutations = {
     if (state.hasOwnProperty(key)) {
       state[key] = value
     }
-  }
+  },
 }
 
 const actions = {

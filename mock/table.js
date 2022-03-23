@@ -1243,17 +1243,32 @@ const data = Mock.mock({
 })
 
 module.exports = [{
-  url: '/vue-admin-template/table/list',
-  type: 'get',
-  response: config => {
-    const items = data.list
-    return {
-      code: 20000,
-      data: {
-        total: items.length,
-        items: items
+    url: '/vue-admin-template/table/list',
+    type: 'get',
+    response: config => {
+      const items = data.list
+      return {
+        code: 20000,
+        data: {
+          total: items.length,
+          items: items
+        }
       }
     }
-  }
-},
+  },
+  {
+    url: '/vue-admin-template/dialogTable/list',
+    type: 'get',
+    response: config => {
+      const items = data.items
+      return {
+        code: 20000,
+        data: {
+          total: items.length,
+          items: items
+        }
+      }
+    }
+  },
+
 ]

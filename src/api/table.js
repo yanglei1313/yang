@@ -7,3 +7,11 @@ export function getList(params) {
     params
   })
 }
+
+export function getFormList(params) {
+  return request({
+    url: '/vue-admin-template/dialogTable/list',
+    method: 'get',
+    params
+  })
+}

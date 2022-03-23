@@ -68,6 +68,18 @@ export const constantRoutes = [
         meta: { title: '用户列表', icon: 'table' }
       },
       {
+        path: 'role',
+        name: 'roleList',
+        component: () => import('@/views/role/index'),
+        meta: { title: '角色管理', icon: 'table' }
+      },
+      {
+        path: 'router',
+        name: 'router',
+        component: () => import('@/views/router/index'),
+        meta: { title: '路由管理', icon: 'table' }
+      },
+      {
         path: 'tree',
         name: 'Tree',
         component: () => import('@/views/tree/index'),
@@ -78,7 +90,7 @@ export const constantRoutes = [
   {
     path: '/example',
     component: Layout,
-    redirect: '/example/table',
+    // redirect: '/example/table',
     name: 'Example',
     meta: { title: '例子', icon: 'el-icon-s-help' },
     children: [

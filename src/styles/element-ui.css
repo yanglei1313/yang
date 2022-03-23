@@ -296,6 +296,7 @@ span.el-radio__inner {
 .el-input__inner {
   height: 30px !important;
   line-height: 30px !important;
+  border-radius: 20px;
 }
 
 .el-input-number > span {
@@ -311,7 +312,7 @@ span.el-radio__inner {
 /* 合计行上移样式结束 */
 .el-table .el-table__header-wrapper th,
 .el-table .el-table__fixed-header-wrapper th {
-  background: #eff1f7;
+  background: #ececf1;
 }
 
 .el-table .el-table__header-wrapper th, .el-table .el-table__header-wrapper td,
@@ -510,4 +511,20 @@ span.el-radio__inner {
 
 .el-button.is-round {
   padding: 0 12px;
+  border: 1px solid #586cb1 !important;
+}
+
+input::-webkit-input-placeholder {
+  color: #c0c4cc;
+  font-size: 12px;
+}
+
+input::-moz-input-placeholder {
+  color: #c0c4cc;
+  font-size: 12px;
+}
+
+input::-ms-input-placeholder {
+  color: #c0c4cc;
+  font-size: 12px;
 }

@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: 'Vue Admin Template',
+  title: 'Now冥想管理中心',
 
   /**
    * @type {boolean} true | false

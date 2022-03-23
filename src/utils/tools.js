@@ -53,3 +53,8 @@ export function uuid(len = 35) {
     .join('')
     .substr(0, len)
 }
+
+
+export const setListValue = (list, origin, key = 'key') => {
+  for (const v of list) if (v[key]) v.value = v[key].fetchValue(origin)
+}

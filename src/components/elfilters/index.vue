@@ -1,105 +1,118 @@
 <script>
-import { fetchMoldValues } from '../../utils/tools'
+import { fetchMoldValues } from "../../utils/tools";
 
 export default {
-  name: 'FilterLayout',
+  name: "FilterLayout",
 
   props: {
     filters: { type: Array, default: () => [] },
     size: { type: String, default: null },
-    labelWidth: { type: String, default: null }
+    labelWidth: { type: String, default: null },
   },
 
   created() {
     this.comps = {
       input: (h, props) =>
-        h('el-input', {
-          attrs: { placeholder: '请输入', size: this.size, ...props },
-          on: { input: (event) => (props.value = event), ...props.on }
+        h("el-input", {
+          attrs: {
+            placeholder: props.label,
+            size: this.size,
+            clearable: true,
+            ...props,
+          },
+          on: { input: (event) => (props.value = event), ...props.on },
         }),
 
       button: (h, props) =>
         h(
-          'el-button',
+          "el-button",
           {
+            class:"ybtn",
             props: { size: this.size, plain: true, ...props },
-            on: { click: (...args) => props.click && props.click(...args), ...props.on }
+            on: {
+              click: (...args) => props.click && props.click(...args),
+              ...props.on,
+            },
           },
           props.value
         ),
 
       select: (h, props) => {
-        console.log(props);
-        const childs = []
+        const childs = [];
         if (props.options) {
           for (const k in props.options) {
             childs.push(
-              h('el-option', {
+              h("el-option", {
                 props: {
-                  value: props.options[k][props.props?.value || 'value'] || k,
-                  label: props.options[k][props.props?.label || 'label'] || props.options[k],
-                  disabled: props.options[k].disabled
-                }
+                  value: props.options[k][props.props?.value || "value"] || k,
+                  label:
+                    props.options[k][props.props?.label || "label"] ||
+                    props.options[k],
+                  disabled: props.options[k].disabled,
+                },
               })
-            )
+            );
           }
         }
         return h(
-          'el-select',
+          "el-select",
           {
-            attrs: { placeholder: '请选择', size: this.size, ...props },
-            on: { input: (event) => (props.value = event), ...props.on }
+            attrs: { placeholder: props.label, size: this.size, ...props },
+            on: { input: (event) => (props.value = event), ...props.on },
           },
           childs
-        )
+        );
       },
 
       date: (h, props) =>
-        h('el-date-picker', {
+        h("el-date-picker", {
           style: props.style,
           attrs: {
-            type: 'date',
-            placeholder: '选择日期',
-            'range-separator': '',
-            'start-placeholder': '开始日期',
-            'end-placeholder': '结束日期',
+            type: "date",
+            placeholder: "选择日期",
+            "range-separator": "",
+            "start-placeholder": "开始日期",
+            "end-placeholder": "结束日期",
             size: this.size,
             valueFormat: this.dateValueFormat(props.type),
-            ...props
+            ...props,
           },
-          on: { input: (event) => (props.value = event), ...props.on }
+          on: { input: (event) => (props.value = event), ...props.on },
         }),
 
       buttonGroup: (h, props) =>
         h(
-          'el-button-group',
+          "el-button-group",
           (props.buttons || props).map((item) => this.comps.button(h, item))
         ),
 
       cascader: (h, props) =>
-        h('el-cascader', {
+        h("el-cascader", {
           props: { size: this.size, ...props },
-          on: { input: (event) => (props.value = event), ...props.on }
+          on: { input: (event) => (props.value = event), ...props.on },
         }),
 
       custom: (h, props) =>
-        h(props.component, { attrs: { size: this.size, ...props }, on: { input: (event) => (props.value = event) } })
-    }
+        h(props.component, {
+          attrs: { size: this.size, ...props },
+          on: { input: (event) => (props.value = event) },
+        }),
+    };
     console.log(this.comps);
   },
 
   methods: {
-    dateValueFormat(type = 'date') {
+    dateValueFormat(type = "date") {
       return {
-        year: 'yyyy',
-        month: 'yyyy-MM',
-        monthrange: 'yyyy-MM',
-        date: 'yyyy-MM-dd',
-        dates: 'yyyy-MM-dd',
-        daterange: 'yyyy-MM-dd',
-        datetime: 'yyyy-MM-dd hh:mm:ss',
-        datetimerange: 'yyyy-MM-dd hh:mm:ss'
-      }[type]
+        year: "yyyy",
+        month: "yyyy-MM",
+        monthrange: "yyyy-MM",
+        date: "yyyy-MM-dd",
+        dates: "yyyy-MM-dd",
+        daterange: "yyyy-MM-dd",
+        datetime: "yyyy-MM-dd hh:mm:ss",
+        datetimerange: "yyyy-MM-dd hh:mm:ss",
+      }[type];
     },
 
     /**
@@ -108,40 +121,52 @@ export default {
      * @param {object} { origin: 数据源, key: 取值的key }
      */
     getValues(options) {
-      return fetchMoldValues(this.filters, options)
+      return fetchMoldValues(this.filters, options);
     },
 
     reset() {
       for (let i = 0, item; (item = this.filters[i]); i++) {
-        if (!item.mold || item.mold.includes('button')) continue
-        item.value = ''
+        if (!item.mold || item.mold.includes("button")) continue;
+        item.value = "";
       }
     },
 
     fetchLayout(h) {
-      const childs = []
+      const childs = [];
       for (const props of this.filters) {
-        if (props.display === false) continue
-        childs.push(this.fetchItem(h, props))
+        if (props.display === false) continue;
+        childs.push(this.fetchItem(h, props));
       }
       return h(
-        'el-form',
-        { class: 'qzui-filter-layout', attrs: { size: this.size, inline: true, labelWidth: this.labelWidth } },
+        "el-form",
+        {
+          class: "qzui-filter-layout",
+          attrs: { size: this.size, inline: true, labelWidth: this.labelWidth },
+        },
         childs
-      )
+      );
     },
 
     fetchItem(h, props) {
       return h(
-        'el-form-item',
-        { class: { not__empty__label: props.label && props.label.trim() }, props: { label: props.label, prop: props.key } },
+        "el-form-item",
+        {
+          class: { not__empty__label: props.label && props.label.trim() },
+          props: { prop: props.key },
+          style:{
+            margin:'10px'
+          }
+        },
         [this.comps[props.mold](h, props)]
-      )
-    }
+      );
+    },
   },
 
   render(h) {
-    return this.fetchLayout(h)
-  }
-}
+    return this.fetchLayout(h);
+  },
+};
 </script>
+
+<style>
+</style>

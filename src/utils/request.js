@@ -31,12 +31,15 @@ service.interceptors.request.use(
       config.data = formData
     }
 
-    if (store.getters.token) {
-      // let each request carry token
-      // ['X-Token'] is a custom headers key
-      // please modify it according to the actual situation
-      config.headers['token'] = db.get('TOKEN', '')
-    }
+    // if (store.getters.token) {
+    //   // let each request carry token
+    //   // ['X-Token'] is a custom headers key
+    //   // please modify it according to the actual situation
+      
+    // }
+
+    const token = db.get('TOKEN', '')
+    if (token && config.headers['token'] !== false) config.headers['token'] = db.get('TOKEN', '')
     return config
   },
   error => {

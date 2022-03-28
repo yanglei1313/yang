@@ -9,11 +9,15 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Dashboard',
+  // created(){
+  //   console.log(this.$router);
+  // },
   computed: {
      name() {
       return this.$store.state.account.user.name
     },
   }
+  
 }
 </script>
 

@@ -41,6 +41,7 @@ export default {
   mounted(){
     console.log(this.name);
     console.log(this.avatar);
+    console.log(this.$router);
   },
   methods: {
     toggleSideBar() {
@@ -48,6 +49,7 @@ export default {
     },
     async logout() {
       await this.$store.dispatch('user/logout')
+      window.localStorage.clear()
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   }

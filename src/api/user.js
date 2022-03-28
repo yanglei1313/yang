@@ -10,6 +10,15 @@ export function login(data) {
   })
 }
 
+export function getLeftNav(data) {
+  return request({
+    url: '/config/getLeftNav',
+    method: 'post',
+    data,
+    formData: true,
+  })
+}
+
 export function getInfo(token) {
   return request({
     url: '/vue-admin-template/user/info',
@@ -25,5 +34,7 @@ export function logout() {
     method: 'post'
   })
 }
+
+
 
 

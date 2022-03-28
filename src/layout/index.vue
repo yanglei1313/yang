@@ -10,22 +10,6 @@
 
       
     </div>
-     <!-- <div :class="{ hasTagsView: needTagsView }" class="main-container">
-      <div :class="{ 'fixed-header': fixedHeader }">
-        <navbar />
-        <tags-view v-if="needTagsView" />
-      </div>
-
-      <section class="app-main">
-        <transition name="fade-transform" mode="out-in">
-          <AppMain />
-        </transition>
-      </section>
-
-      <right-panel >
-        <settings />
-      </right-panel>
-    </div> -->
   </div>
 </template>
 

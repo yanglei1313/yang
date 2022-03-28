@@ -8,6 +8,7 @@
           :props="props"
           :data="treeDate"
           node-key="id"
+          default-expand-all
           @check-change="handleCheckChange"
           :expand-on-click-node="false"
           :render-content="renderContent"

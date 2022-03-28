@@ -30,8 +30,7 @@ import Layout from '@/layout'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-export const constantRoutes = [
-  {
+export const constantRoutes = [{
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true
@@ -51,7 +50,10 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '主页', icon: 'dashboard' }
+      meta: {
+        title: '主页',
+        icon: 'dashboard'
+      }
     }]
   },
   {
@@ -59,146 +61,225 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/user/list',
     name: 'Example',
-    meta: { title: '用户', icon: 'el-icon-user-solid' },
-    children: [
-      {
+    meta: {
+      title: '用户',
+      icon: 'el-icon-user-solid'
+    },
+    children: [{
         path: 'list',
         name: 'userList',
         component: () => import('@/views/user/userList/index'),
-        meta: { title: '用户列表', icon: 'table' }
+        meta: {
+          title: '用户列表'
+        }
+      },
+      {
+        path: 'type',
+        name: 'userType',
+        component: () => import('@/views/user/userType/index'),
+        meta: {
+          title: '用户类型'
+        }
+      },
+      {
+        path: 'record',
+        name: 'userRecord',
+        component: () => import('@/views/user/userRecord/index'),
+        meta: {
+          title: '用户练习记录'
+        }
+      },
+      {
+        path: 'tag',
+        name: 'userTag',
+        component: () => import('@/views/user/userTag/index'),
+        meta: {
+          title: '用户标签'
+        }
       },
       {
         path: 'role',
         name: 'roleList',
         component: () => import('@/views/role/index'),
-        meta: { title: '角色管理', icon: 'table' }
+        meta: {
+          title: '角色管理'
+        }
       },
       {
         path: 'router',
         name: 'router',
         component: () => import('@/views/router/index'),
-        meta: { title: '路由管理', icon: 'table' }
+        meta: {
+          title: '路由管理'
+        }
       },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: '树形结构', icon: 'tree' }
-      }
+
     ]
   },
   {
-    path: '/example',
+    path: '/order',
     component: Layout,
-    // redirect: '/example/table',
+    redirect: '/order/refund',
     name: 'Example',
-    meta: { title: '例子', icon: 'el-icon-s-help' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: '表格', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: '树形结构', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
     meta: {
-      title: 'Nested',
-      icon: 'nested'
+      title: '订单',
+      icon: 'el-icon-s-order'
     },
-    children: [
+    children:[
       {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
+        path: 'refund',
+        name: 'refund',
+        component: () => import('@/views/order/refund/index'),
+        meta: {
+          title: '退款订单'
+        }
       },
       {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
+        path: 'member',
+        name: 'member',
+        component: () => import('@/views/order/member/index'),
+        meta: {
+          title: '会员订单'
+        }
+      },
+      {
+        path: 'nowOrder',
+        name: 'nowOrder',
+        component: () => import('@/views/order/NowOrder/index'),
+        meta: {
+          title: 'Now贝订单'
+        }
+      },
+      {
+        path: 'course',
+        name: 'course',
+        component: () => import('@/views/order/course/index'),
+        meta: {
+          title: '课程订单'
+        }
+      },
+      {
+        path: 'appraisal',
+        name: 'appraisal',
+        component: () => import('@/views/order/appraisal/index'),
+        meta: {
+          title: '测评订单'
+        }
+      },
+    ]
+  },
+  {
+    path: '/inquire',
+    component: Layout,
+    redirect: '/inquire/order',
+    name: 'Example',
+    meta: {
+      title: '查询',
+      icon: 'el-icon-search'
+    },
+    children:[
+      {
+        path: 'queryOrder',
+        name: 'queryOrder',
+        component: () => import('@/views/inquire/order/index'),
+        meta: {
+          title: '查询订单'
+        }
+      },
+      {
+        path: 'succeed',
+        name: 'succeed',
+        component: () => import('@/views/inquire/succeed/index'),
+        meta: {
+          title: '无忧卡未成功支付'
+        }
+      },
+      {
+        path: 'failing',
+        name: 'failing',
+        component: () => import('@/views/inquire/failing/index'),
+        meta: {
+          title: '双11298未成功支付'
+        }
       }
     ]
   },
-
-  // {
-  //   path: 'external-link',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-  //       meta: { title: 'External Link', icon: 'link' }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/teachers',
+    component: Layout,
+    redirect: '/teachers/authentication',
+    name: 'Example',
+    meta: {
+      title: '师资',
+      icon: 'el-icon-user'
+    },
+    children:[
+      {
+        path: 'authentication',
+        name: 'authentication',
+        component: () => import('@/views/teachers/authentication/index'),
+        meta: {
+          title: '认证老师'
+        }
+      },
+      {
+        path: 'feedback',
+        name: 'feedback',
+        component: () => import('@/views/teachers/feedback/index'),
+        meta: {
+          title: '学员反馈'
+        }
+      },
+      {
+        path: 'commonProblem',
+        name: 'commonProblem',
+        component: () => import('@/views/teachers/commonProblem/index'),
+        meta: {
+          title: '常见问题'
+        }
+      },
+    ]
+  },
 
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  {
+    path: '*',
+    redirect: '/404',
+    hidden: true
+  }
 ]
+
+
+export const asyncRouterMap = [
+  // {
+  //   path: '/permission',
+  //   component: Layout,
+  //   name: '权限测试',
+  //   meta: {
+  //     role: ['admin', 'super_editor']
+  //   }, //页面需要的权限
+  //   children: [{
+  //     path: 'index',
+  //     component: Permission,
+  //     name: '权限测试页',
+  //     meta: {
+  //       role: ['admin', 'super_editor']
+  //     } //页面需要的权限
+  //   }]
+  // },
+  // {
+  //   path: '*',
+  //   redirect: '/404',
+  //   hidden: true
+  // }
+];
+
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({
+    y: 0
+  }),
   routes: constantRoutes
 })
 

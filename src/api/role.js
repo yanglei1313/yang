@@ -68,3 +68,11 @@ export function deleteRole(data) {
   })
 }
 
+//新增用户
+export function addUser(data) {
+  return request({
+    url: '/member/addUser', 
+    method: 'post',
+    data
+  })
+}

@@ -54,7 +54,20 @@ export default {
           childs
         )
       },
+      // radio:(h,mold) =>{
+      //   const childs = []
+      //   if(mode.options){
+      //     for(const k in mode.options){
+      //       childs.push(
+      //         h('el-radio',{attr:{label:k}})
+      //       )
+      //     }
+      //   }
+      // }
+        // h('el-radio-group',{props:{value: this.model[mold[this.fetchKey]]}},[
 
+        // ]),
+      
       cascader: (h, mold) =>
         h('el-cascader', {
           props: { placeholder: '请选择...', ...mold, value: this.model[mold[this.fetchKey]] },

@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <el-button class="ybtn" @click="addRole">新增角色</el-button>
-    <Y-table v-bind="tables"  @page-change="requistionpageChange"></Y-table>
+    <Y-table v-bind="tables"  @page-change="requistionpageChange" v-loading="listLoading"></Y-table>
 
     <el-dialog
       :visible.sync="dialogVisible"
@@ -54,6 +54,7 @@ import { getAuthTree, getRole, editRole ,deleteRole} from "@/api/role";
 export default {
   data() {
     return {
+      listLoading:false,
       loading: false,
       role: {
         name: "",
@@ -107,6 +108,7 @@ export default {
   created() {
     this.fetch();
     this.fetchTree();
+    console.log(this.$globalRouter,111111111111);
   },
   methods: {
     requistionpageChange(pageInfo){
@@ -171,17 +173,17 @@ export default {
     },
 
     fetch() {
+      this.listLoading = true
       getRole({
         page: this.tables.pageInfo.currentPage,
         pagesize: this.tables.pageInfo.pageSize,
       }).then((res) => {
-        console.log(res);
+        this.listLoading = false
         this.tables.pageInfo.total = res.result.count;
         this.tables.data = res.result.lists;
          this.tables.data.forEach((item) =>{
            item.auth_ids = [...item.auth_ids]
          })
-         console.log(this.tables.data);
       });
     },
 
@@ -192,7 +194,6 @@ export default {
 
     fetchTree() {
       getAuthTree().then((res) => {
-        console.log(res);
         this.treeDate = res.result.lists;
         console.log(this.treeDate);
       });

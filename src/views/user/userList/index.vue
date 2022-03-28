@@ -5,7 +5,6 @@
     </div>
 
     <!-- <Y-details :details="details"/> -->
-    <!-- <Y-form ref="formRef" :molds="List"></Y-form> -->
     <Y-table
       ref="dataTable"
       :column="tables.column"
@@ -15,25 +14,22 @@
       :border="false"
       :page-info="tables.pageInfo"
       @page-change="pageChange"
+      v-loading="loading"
     ></Y-table>
-    <keep-alive>
-      <Y-dialog
-        :dialog-visible="visible"
-        :title="dialogTitle"
-        :close-on-click-modal="false"
-        @close="dialogClose"
-        :tableProps="tables"
-      >
-      </Y-dialog>
-    </keep-alive>
-    <el-tree
-      :props="props"
-      :data="treeDate"
-      show-checkbox
-      @check-change="handleCheckChange"
-      @check="treeCkeck"
-    ></el-tree>
-    <div></div>
+    <!-- <Y-dialog
+      :dialog-visible="visible"
+      :title="dialogTitle"
+      :close-on-click-modal="false"
+      @close="dialogClose"
+      :tableProps="tables"
+    >
+    </Y-dialog> -->
+    <addDialog :dialogVisible="visible" @close="addDialogClose"> </addDialog>
+    <dateilDialog
+      :dialogVisible="dateilVisible"
+      :rowData="currentRow"
+      @close="dateilVisible = false"
+    ></dateilDialog>
   </div>
 </template> 
 
@@ -41,8 +37,11 @@
 import { getList, getFormList } from "@/api/table";
 import { getAuthTree, getAuth } from "@/api/role";
 import { setListValue } from "@/utils/tools";
+import addDialog from "./components/addDialog.vue";
+import dateilDialog from "./components/details.vue";
 
 export default {
+  components: { addDialog, dateilDialog },
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -55,6 +54,9 @@ export default {
   },
   data() {
     return {
+      currentRow:{},
+      loading: false,
+      dateilVisible: false,
       treeDate: [],
       props: {
         label: "name",
@@ -87,28 +89,20 @@ export default {
           options: [],
         },
         {
-          key: "warehousingNo",
+          key: "用户昵称",
           mold: "input",
           label: "订单号",
           value: "",
         },
         {
-          key: "planStatus",
+          key: "planMode",
+          filterable: true,
           mold: "select",
-          label: "支付流水号",
+          label: "登录方式",
           value: "",
           props: { value: "id", label: "name" },
+          options: [],
         },
-        {
-          key: "billNoticeNo",
-          mold: "input",
-          label: "支付方式",
-          value: "",
-        },
-
-        { key: "whouseCname", mold: "input", label: "支付状态", value: "" },
-        { key: "carNo", mold: "input", label: "平台来源", value: "" },
-        { key: "driverName", mold: "input", label: "支付时间段", value: "" },
         {
           key: "warehousingDate",
           label: "日期",
@@ -135,15 +129,14 @@ export default {
           plain: false,
           value: "添加用户",
           click: () => {
-            console.log(111);
-
+            this.visible = true;
             console.log(this.$refs.filters.getValues());
           },
         },
       ],
 
       tables: {
-        pageInfo:{ currentPage: 1, pageSize: 50, total: 0 },
+        pageInfo: { currentPage: 1, pageSize: 50, total: 0 },
         api: getFormList,
         data: null,
         columnWidth: "200px",
@@ -174,21 +167,20 @@ export default {
               {
                 class: "success",
                 label: "详情",
-                click: ({ row }) => console.log(row),
+                click: ({ row }) => {
+                  this.currentRow = row
+                  this.dateilVisible = true
+                  console.log(this.dateilDialog);
+                },
               },
               {
                 class: "pirmary",
-                label: "详情",
-                click: ({ row }) => console.log(row),
-              },
-              {
-                class: "warning",
-                label: "详情",
+                label: "订单",
                 click: ({ row }) => console.log(row),
               },
               {
                 class: "danger",
-                label: "详情",
+                label: "禁用",
                 click: ({ row }) => console.log(row),
               },
             ],
@@ -200,17 +192,13 @@ export default {
   created() {
     this.fetchData();
     this.fetchTree();
-    // console.log(this.$route);
-    // const obj = {
-    //   approvalTypeName: "特殊类型",
-    //   userName: "哈哈哈哈哈",
-    //   initiateTime: "昨天",
-    // };
-    // setListValue(this.details, obj);
-    // console.log(this.details);
-    console.log(this.$store.state.account.user, 111111111111);
+    console.log(this.$router);
   },
   methods: {
+    addDialogClose() {
+      this.visible = false;
+      this.fetchData();
+    },
     treeCkeck() {
       console.log(arguments);
     },
@@ -227,18 +215,23 @@ export default {
         console.log(this.treeDate);
       });
     },
-    pageChange(){},
+    pageChange(pageInfo) {
+      this.tables.pageInfo = { ...this.tables.pageInfo, ...pageInfo };
+      this.fetchData();
+    },
     fetchData() {
-      // this.listLoading = true;
+      this.loading = true;
+
       const pageInfo = {
         page: this.tables.pageInfo.currentPage,
         pagesize: this.tables.pageInfo.pageSize,
       };
       getAuth(pageInfo).then((response) => {
         // this.tables.data = response.data.items;
-        // this.listLoading = false;
+        this.loading = false;
         console.log(response);
-        this.tables.data = response.result.lists
+        this.tables.data = response.result.lists;
+        this.tables.pageInfo.total = response.result.count;
       });
     },
   },

@@ -67,8 +67,9 @@
 
 <script>
 import { validUsername } from "@/utils/validate";
-import { getToken, setToken, removeToken } from '@/utils/auth'
-import { login, logout, getInfo } from "@/api/user";
+import { getToken, setToken, removeToken } from "@/utils/auth";
+import { login, getLeftNav } from "@/api/user";
+import db from "@/utils/localstorage"
 export default {
   name: "Login",
   data() {
@@ -123,36 +124,34 @@ export default {
         this.$refs.password.focus();
       });
     },
-    handleLogin() {
-      this.$refs.loginForm.validate((valid) => {
-        if (valid) {
-          this.loading = true;
-          login(this.loginForm).then((res) => {
-            console.log(res);
-            if (res.code === 200) {
-              this.$store.commit('account/setUser',{
-                id:res.result.id,
-                name:res.result.username,
-                avatar:res.result.avatar|| 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-              })
-              this.$store.commit('account/setTokens',res.result.token)
-              setToken(res.result.token)
-              this.$router.replace('/')
-            }
-          });
-          // this.$store.dispatch('user/login', this.loginForm).then(() => {
-          //   this.$store.commit('account/setUser',{})
-          //   this.$router.push({ path: this.redirect || '/' })
-          //   this.loading = false
-          // }).catch(() => {
-          //   this.loading = false
-          // })
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
-    },
+    handleLogin(){
+      this.$router.replace("/");
+    }
+    // handleLogin() {
+    //   this.$refs.loginForm.validate((valid) => {
+    //     if (valid) {
+    //       this.loading = true;
+    //       login(this.loginForm).then((res) => {
+    //         console.log(res);
+    //         if (res.code === 200) {
+    //           this.$store.commit("account/setUser", {
+    //             id: res.result.id,
+    //             name: res.result.username,
+    //             avatar:
+    //               res.result.avatar ||
+    //               "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
+    //           });
+    //           this.$store.commit("account/setTokens", res.result.token);
+    //           setToken(res.result.token);
+    //           this.$router.replace("/");
+    //         }
+    //       });
+    //     } else {
+    //       console.log("error submit!!");
+    //       return false;
+    //     }
+    //   });
+    // },
   },
 };
 </script>

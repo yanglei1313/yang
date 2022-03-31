@@ -10,7 +10,7 @@ export default {
     return {
       tables: {
         column: [
-          { type: "index", label: "序号" },
+          { type: "index", label: "序号",width: 100 },
           { prop: "name", label: "会员名称" },
           { prop: "type", label: "类型" },
           { prop: "time", label: "创建日期" },

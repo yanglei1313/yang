@@ -11,7 +11,7 @@ export default {
     return {
       tables: {
         column: [
-          { type: "index", label: "序号" },
+          { type: "index", label: "序号", width: 100 },
           { prop: "id", label: "用户ID" },
           { prop: "date", label: "日期" },
           { prop: "second", label: "时长<秒>" },
@@ -69,8 +69,11 @@ export default {
           icon: "el-icon-search",
           value: "搜索",
           plain: false,
-          click: () => { 
-            console.log(1111);
+          click: () => {
+            
+            let res =  this.$refs.filters.getValues()
+            console.log(res);
+
           },
         },
       ],

@@ -1,5 +1,5 @@
 import router from './router'
-import store from './store'
+import store from './store/index'
 import {
   Message
 } from 'element-ui'
@@ -22,69 +22,70 @@ const whiteList = ['/login'] // no redirect whitelist
 var getRouter
 console.log(getRouter);
 
-// router.beforeEach(async (to, from, next) => {
-//   // start progress bar
-//   NProgress.start()
-//   // 设置页面title
-//   document.title = getPageTitle(to.meta.title)
+router.beforeEach(async (to, from, next) => {
+  // start progress bar
+  NProgress.start()
+  // 设置页面title
+  document.title = getPageTitle(to.meta.title)
 
-//   const hasToken = getToken()
-//   if (hasToken) {
-//     if (to.path === '/login') {
-//       // if is logged in, redirect to the home page
-//       next({
-//         path: '/'
-//       })
-//       NProgress.done()
-//     } else {
-//       const hasGetUserInfo = store.getters.name
-//       if (getObjArr('router')) {
-//         next()
-//       } else {
-//         try {
-//           // console.log(db.get('USER_ROUTER'))
-//           if (getRouter == undefined) {
-//             if (!getObjArr('router')) {
-//               getLeftNav().then((res) => {
-//                 getRouter = res.result.lists
-//                 getRouter = filterAsyncRouter(getRouter)
-//                 saveObjArr('router', getRouter)
-//                 router.addRoutes(getRouter)
-//                 router.options.routes = router.options.routes.concat(getRouter)
-//                 next()
-//               });
-//             } else {
-//               // routerGo(to, next)
-//               getRouter = getObjArr('router')
-//               getRouter = filterAsyncRouter(getRouter)
-//               router.addRoutes(getRouter)
-//               router.options.routes = router.options.routes.concat(getRouter)
-//               next()
-//             }
-//           }
-//         } catch (error) {
-//           // remove token and go to login page to re-login
-//           await store.dispatch('user/resetToken')
-//           // Message.error(error || 'Has Error')
-//           Message.error({ message: error || 'Has Error' })
-//           next(`/login?redirect=${to.path}`)
-//           NProgress.done()
-//         }
-//       }
-//     }
-//   } else {
-//     /* has no token*/
+  const hasToken = getToken()
+  if (hasToken) {
+    if (to.path === '/login') {
+      // if is logged in, redirect to the home page
+      next({
+        path: '/'
+      })
+      NProgress.done()
+    } else {
+      const hasGetUserInfo = store.getters.name
+      if (getObjArr('router')) {
+        next()
+      } else {
+        try {
+          // console.log(db.get('USER_ROUTER'))
+          if (getRouter == undefined) {
+            if (!getObjArr('router')) {
+              getLeftNav().then((res) => {
+                getRouter = res.result.lists
+                getRouter = filterAsyncRouter(getRouter)
+                saveObjArr('router', getRouter)
+                store.commit('account/setRoutes', getRouter)
+                router.addRoutes(getRouter)
+                router.options.routes = router.options.routes.concat(getRouter)
+                next()
+              });
+            } else {
+              // routerGo(to, next)
+              getRouter = getObjArr('router')
+              getRouter = filterAsyncRouter(getRouter)
+              router.addRoutes(getRouter)
+              router.options.routes = router.options.routes.concat(getRouter)
+              next()
+            }
+          }
+        } catch (error) {
+          // remove token and go to login page to re-login
+          await store.dispatch('user/resetToken')
+          // Message.error(error || 'Has Error')
+          Message.error({ message: error || 'Has Error' })
+          next(`/login?redirect=${to.path}`)
+          NProgress.done()
+        }
+      }
+    }
+  } else {
+    /* has no token*/
 
-//     if (whiteList.indexOf(to.path) !== -1) {
-//       // in the free login whitelist, go directly
-//       next()
-//     } else {
-//       // other pages that do not have permission to access are redirected to the login page.
-//       next(`/login?redirect=${to.path}`)
-//       NProgress.done()
-//     }
-//   }
-// })
+    if (whiteList.indexOf(to.path) !== -1) {
+      // in the free login whitelist, go directly
+      next()
+    } else {
+      // other pages that do not have permission to access are redirected to the login page.
+      next(`/login?redirect=${to.path}`)
+      NProgress.done()
+    }
+  }
+})
 // function routerGo(to, next) {
 //   // console.log(getRouter);
 //   getRouter = filterAsyncRouter(getRouter) //过滤路由

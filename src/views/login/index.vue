@@ -124,34 +124,34 @@ export default {
         this.$refs.password.focus();
       });
     },
-    handleLogin(){
-      this.$router.replace("/");
-    }
-    // handleLogin() {
-    //   this.$refs.loginForm.validate((valid) => {
-    //     if (valid) {
-    //       this.loading = true;
-    //       login(this.loginForm).then((res) => {
-    //         console.log(res);
-    //         if (res.code === 200) {
-    //           this.$store.commit("account/setUser", {
-    //             id: res.result.id,
-    //             name: res.result.username,
-    //             avatar:
-    //               res.result.avatar ||
-    //               "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
-    //           });
-    //           this.$store.commit("account/setTokens", res.result.token);
-    //           setToken(res.result.token);
-    //           this.$router.replace("/");
-    //         }
-    //       });
-    //     } else {
-    //       console.log("error submit!!");
-    //       return false;
-    //     }
-    //   });
-    // },
+    // handleLogin(){
+    //   this.$router.replace("/");
+    // }
+    handleLogin() {
+      this.$refs.loginForm.validate((valid) => {
+        if (valid) {
+          this.loading = true;
+          login(this.loginForm).then((res) => {
+            console.log(res);
+            if (res.code === 200) {
+              this.$store.commit("account/setUser", {
+                id: res.result.id,
+                name: res.result.username,
+                avatar:
+                  res.result.avatar ||
+                  "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
+              });
+              this.$store.commit("account/setTokens", res.result.token);
+              setToken(res.result.token);
+              this.$router.replace("/");
+            }
+          });
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
   },
 };
 </script>

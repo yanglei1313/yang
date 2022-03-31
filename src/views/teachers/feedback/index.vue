@@ -1,8 +1,13 @@
 <template>
   <div class="app-container">
     <Y-table v-bind="tables">
-      <template v-slot:date="{ }">
-        <img src="'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'" width="30" />
+      <template v-slot:date="{}">
+        <el-image
+          style="width: 100px; height: 100px"
+          src="https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg"
+          :preview-src-list="srcList"
+        >
+        </el-image>
       </template>
     </Y-table>
   </div>
@@ -12,9 +17,13 @@
 export default {
   data() {
     return {
+      srcList: [
+        "https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg",
+        "https://fuss10.elemecdn.com/1/8e/aeffeb4de74e2fde4bd74fc7b4486jpeg.jpeg",
+      ],
       tables: {
         column: [
-          { type: "index", label: "序号" ,width:100},
+          { type: "index", label: "序号", width: 100 },
           { prop: "name", label: "标签名称" },
           { prop: "type", label: "说明" },
           { prop: "date", label: "头像" },

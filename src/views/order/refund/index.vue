@@ -11,13 +11,16 @@ export default {
     return {
       tables: {
         column: [
-          { type: "index", label: "序号" ,width: 100},
           { prop: "id", label: "用户ID" },
-          { prop: "date", label: "日期" },
-          { prop: "second", label: "时长<秒>" },
-          { prop: "exerciseTime", label: "练习时长" },
-          { prop: "recordTime", label: "记录时间" },
-          { prop: "endTime", label: "最后更新时间" },
+          { prop: "date", label: "订单序号" },
+          { prop: "second", label: "订单号" },
+          { prop: "exerciseTime", label: "订单标题" },
+          { prop: "recordTime", label: "单价" },
+          { prop: "endTime", label: "会员时长(天)" },
+          { prop: "endTime", label: "状态" },
+          { prop: "endTime", label: "支付时间" },
+          { prop: "endTime", label: "支付方式" },
+          { prop: "endTime", label: "Now币" },
         ],
         data: [
           {
@@ -54,15 +57,8 @@ export default {
       },
 
       filters: [
-        { key: "companyCode", mold: "input", label: "用户ID", value: "" },
-        {
-          key: "warehousingDate",
-          label: "日期",
-          mold: "date",
-          type: "date",
-          value: "",
-          span: 8,
-        },
+        { key: "companyCode", mold: "input", label: "订单号", value: "" },
+        { key: "companyCode", mold: "input", label: "支付流水号", value: "" },
         {
           mold: "button",
           label: " ",

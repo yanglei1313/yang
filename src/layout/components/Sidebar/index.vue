@@ -32,6 +32,8 @@ export default {
     ]),
     routes() {
       return this.$router.options.routes
+      // const lin = JSON.parse(JSON.stringify(this.$store.state.account.routes))
+      // return lin
     },
     activeMenu() {
       const route = this.$route

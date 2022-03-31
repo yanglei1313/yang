@@ -2,13 +2,12 @@
   <div class="app-container">
     <Y-filters ref="filters" :filters="filters" label-width="90px" />
     <Y-table v-bind="tables"></Y-table>
-
     <addDialog :dialogVisible="visible" @close="addDialogClose"> </addDialog>
   </div>
 </template>
 
 <script>
-import addDialog from "../member/components/dialog.vue";
+import addDialog from "@/views/order/member/components/dialog.vue";
 export default {
   components: { addDialog },
   data() {
@@ -16,22 +15,27 @@ export default {
       visible: false,
       tables: {
         column: [
-          { prop: "id", label: "订单序号" },
-          { prop: "username", label: "用户名" },
           { prop: "id", label: "用户ID" },
+          { prop: "username", label: "用户名" },
+          { prop: "second", label: "订单序号" },
           { prop: "exerciseTime", label: "订单号" },
-          { prop: "exerciseTime", label: "产品订单" },
+          { prop: "recordTime", label: "订单标题" },
           { prop: "endTime", label: "单价" },
-          { prop: "endTime", label: "Now数量" },
-          { prop: "endTime", label: "优惠码" },
+          { prop: "endTime", label: "会员时长(天)" },
           { prop: "status", label: "状态" },
           { prop: "endTime", label: "支付时间" },
           { prop: "endTime", label: "支付方式" },
+          { prop: "endTime", label: "Now币" },
+          { prop: "endTime", label: "优惠码" },
+          { prop: "endTime", label: "产品Id" },
           { prop: "endTime", label: "支付流水号" },
+          { prop: "endTime", label: "退款金额" },
+          { prop: "endTime", label: "备注信息" },
           { prop: "endTime", label: "平台" },
           { prop: "endTime", label: "渠道" },
           { prop: "endTime", label: "课程来源" },
           { prop: "endTime", label: "创建日期" },
+          { prop: "endTime", label: "退款", fixed: "right" },
           {
             label: "操作",
             fixed: "right",
@@ -111,7 +115,15 @@ export default {
           props: { value: "id", label: "name" },
           options: [],
         },
-       
+        {
+          key: "planMode",
+          filterable: true,
+          mold: "select",
+          label: "产品",
+          value: "",
+          props: { value: "id", label: "name" },
+          options: [],
+        },
         {
           key: "warehousingDate",
           label: "时间段",
@@ -138,7 +150,7 @@ export default {
           plain: false,
           click: () => {
             console.log(1111);
-            this.visible = true
+            this.visible = true;
           },
         },
       ],

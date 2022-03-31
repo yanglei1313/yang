@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import Child from '@/layout/components/AppMain'
 Vue.use(Router)
 
 /* Layout */
@@ -120,13 +120,12 @@ export const constantRoutes = [{
     path: '/order',
     component: Layout,
     redirect: '/order/refund',
-    name: 'Example',
+    name: 'Order',
     meta: {
       title: '订单',
       icon: 'el-icon-s-order'
     },
-    children:[
-      {
+    children: [{
         path: 'refund',
         name: 'refund',
         component: () => import('@/views/order/refund/index'),
@@ -172,13 +171,12 @@ export const constantRoutes = [{
     path: '/inquire',
     component: Layout,
     redirect: '/inquire/order',
-    name: 'Example',
+    name: 'Inquire',
     meta: {
       title: '查询',
       icon: 'el-icon-search'
     },
-    children:[
-      {
+    children: [{
         path: 'queryOrder',
         name: 'queryOrder',
         component: () => import('@/views/inquire/order/index'),
@@ -208,13 +206,12 @@ export const constantRoutes = [{
     path: '/teachers',
     component: Layout,
     redirect: '/teachers/authentication',
-    name: 'Example',
+    name: 'Teachers',
     meta: {
       title: '师资',
       icon: 'el-icon-user'
     },
-    children:[
-      {
+    children: [{
         path: 'authentication',
         name: 'authentication',
         component: () => import('@/views/teachers/authentication/index'),
@@ -237,6 +234,174 @@ export const constantRoutes = [{
         meta: {
           title: '常见问题'
         }
+      },
+    ]
+  },
+  {
+    path: '/content',
+    component: Layout,
+    redirect: '/content/course',
+    name: 'Content',
+    meta: {
+      title: '内容',
+      icon: 'el-icon-folder'
+    },
+    children: [{
+        path: 'course',
+        name: 'course',
+        component: Child,
+        meta: {
+          title: '课程管理'
+        },
+        children: [
+          
+          {
+            path: 'classify',
+            name: 'classify',
+            component: () => import('@/views/content/course/classify/index'),
+            meta: {
+              title: '课程分类'
+            }
+          },
+          {
+            path: 'list',
+            name: 'list',
+            component: () => import('@/views/content/course/list/index'),
+            meta: {
+              title: '课程列表'
+            }
+          },
+          {
+            path: 'classTag',
+            name: 'classTag',
+            component: () => import('@/views/content/course/classTag/index'),
+            meta: {
+              title: '课程标签'
+            }
+          },
+          {
+            path: 'classifyClass',
+            name: 'classifyClass',
+            component: () => import('@/views/content/course/classifyClass/index'),
+            meta: {
+              title: '分类下课程'
+            }
+          },
+          {
+            path: 'sleepColumn',
+            name: 'sleepColumn',
+            component: () => import('@/views/content/course/sleepColumn/index'),
+            meta: {
+              title: '睡眠栏目管理'
+            }
+          },
+          {
+            path: 'sleepManage',
+            name: 'sleepManage',
+            component: () => import('@/views/content/course/sleepManage/index'),
+            meta: {
+              title: '睡眠课程管理'
+            }
+          },
+          {
+            path: 'teacherManage',
+            name: 'teacherManage',
+            component: () => import('@/views/content/course/teacherManage/index'),
+            meta: {
+              title: '老师管理'
+            }
+          },
+          {
+            path: 'mindfulness',
+            name: 'mindfulness',
+            component: () => import('@/views/content/course/mindfulness/index'),
+            meta: {
+              title: '每日正念'
+            }
+          },
+          {
+            path: 'playList',
+            name: 'playList',
+            component: () => import('@/views/content/course/playList/index'),
+            meta: {
+              title: '播放列表'
+            }
+          },
+          {
+            path: 'userAudio',
+            name: 'userAudio',
+            component: () => import('@/views/content/course/userAudio/index'),
+            meta: {
+              title: '用户音频'
+            }
+          },
+          {
+            path: 'commentManage',
+            name: 'commentManage',
+            component: () => import('@/views/content/course/commentManage/index'),
+            meta: {
+              title: '评论管理'
+            }
+          },
+        ]
+      },
+      {
+        path: 'evaluation',
+        name: 'evaluation',
+        component: Child,
+        meta: {
+          title: '测评管理'
+        },
+        children:[
+          {
+            path: 'evaluationClassify',
+            name: 'evaluationClassify',
+            component: () => import('@/views/content/evaluation/evaluationClassify/index'),
+            meta: {
+              title: '测评分类'
+            }
+          },
+          {
+            path: 'evaluationList',
+            name: 'evaluationList',
+            component: () => import('@/views/content/evaluation/evaluationList/index'),
+            meta: {
+              title: '测评列表'
+            }
+          },
+        ]
+      },
+      {
+        path: 'aphorism',
+        name: 'aphorism',
+        component:  () => import('@/views/content/aphorism/index'),
+        meta: {
+          title: '每日格言'
+        },
+      },
+      {
+        path: 'mindfulnessRead',
+        name: 'mindfulnessRead',
+        component:  () => import('@/views/content/mindfulnessRead/index'),
+        meta: {
+          title: '正念阅读'
+        },
+      },
+      {
+        path: 'decompression',
+        name: 'decompression',
+        component:  () => import('@/views/content/decompression/index'),
+        meta: {
+          title: '减压视频'
+        },
+      },
+      {
+        path: 'commonProblem',
+        name: 'commonProblem',
+        component:  () => import('@/views/content/commonProblem/index'),
+        meta: {
+          title: '常见问题'
+        },
       },
     ]
   },

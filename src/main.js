@@ -11,9 +11,9 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
+import GlobalMixin from '@/utils/GlobalMixin'
 
-
-import '@/components/index'
+import '@/components/index' 
 
 import '@/icons' // icon
 import '@/permission' // permission control
@@ -21,6 +21,7 @@ import '@/permission' // permission control
 import qzui, { fetchMoldValues } from 'qzui'
 import 'qzui/lib/qzui.css'
 Vue.use(qzui)
+Vue.use(GlobalMixin)
 
 // if (process.env.NODE_ENV === 'production') {
 //   const { mockXHR } = require('../mock')

@@ -180,10 +180,11 @@ export default {
       }).then((res) => {
         this.listLoading = false
         this.tables.pageInfo.total = res.result.count;
-        this.tables.data = res.result.lists;
-         this.tables.data.forEach((item) =>{
+         res.result.lists.forEach((item) =>{
            item.auth_ids = [...item.auth_ids]
          })
+        this.tables.data = res.result.lists;
+  
       });
     },
 

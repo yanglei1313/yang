@@ -18,11 +18,12 @@ export function filterAsyncRouter(asyncRouteMap) {
     }
     route.path = '/sass'
     route.component = view(route.component)
-    delete route.children
+    // delete route.children
     if (route.children && route.children.length) {
       route.children = filterAsyncRouter(route.children)
     }
     return true
   })
+  console.log(accessedRouters,999999);
   return accessedRouters
 }

@@ -12,6 +12,7 @@ import getPageTitle from '@/utils/get-page-title'
 import {
   getLeftNav
 } from "@/api/user";
+import { getAuthTree, addAuth, modifyAuth } from "@/api/role";
 import db from "@/utils/localstorage"
 import {filterAsyncRouter} from "@/utils/filterRouter" 
 NProgress.configure({
@@ -45,7 +46,7 @@ router.beforeEach(async (to, from, next) => {
           // console.log(db.get('USER_ROUTER'))
           if (getRouter == undefined) {
             if (!getObjArr('router')) {
-              getLeftNav().then((res) => {
+              getAuthTree().then((res) => {
                 getRouter = res.result.lists
                 getRouter = filterAsyncRouter(getRouter)
                 saveObjArr('router', getRouter)
